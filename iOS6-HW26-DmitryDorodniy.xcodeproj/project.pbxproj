@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */; };
-		8A225B4C28AA66ED00FBE1E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4B28AA66ED00FBE1E4 /* SceneDelegate.swift */; };
 		8A225B4E28AA66ED00FBE1E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4D28AA66ED00FBE1E4 /* ViewController.swift */; };
 		8A225B5128AA66ED00FBE1E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */; };
 		8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		8A225B4628AA66ED00FBE1E4 /* iOS6-HW26-DmitryDorodniy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS6-HW26-DmitryDorodniy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8A225B4B28AA66ED00FBE1E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8A225B4D28AA66ED00FBE1E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8A225B5028AA66ED00FBE1E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A225B5328AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOS6_HW26_DmitryDorodniy.xcdatamodel; sourceTree = "<group>"; };
@@ -59,10 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */,
-				8A225B4B28AA66ED00FBE1E4 /* SceneDelegate.swift */,
 				8A225B4D28AA66ED00FBE1E4 /* ViewController.swift */,
-				8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */,
 				8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */,
+				8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */,
 				8A225B5728AA66EE00FBE1E4 /* LaunchScreen.storyboard */,
 				8A225B5A28AA66EE00FBE1E4 /* Info.plist */,
 				8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */,
@@ -144,7 +141,6 @@
 				8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */,
 				8A225B4E28AA66ED00FBE1E4 /* ViewController.swift in Sources */,
 				8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */,
-				8A225B4C28AA66ED00FBE1E4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +304,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -336,7 +332,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
