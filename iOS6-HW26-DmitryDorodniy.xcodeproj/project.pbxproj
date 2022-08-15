@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */; };
-		8A225B4E28AA66ED00FBE1E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4D28AA66ED00FBE1E4 /* ViewController.swift */; };
+		8A225B4E28AA66ED00FBE1E4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */; };
 		8A225B5128AA66ED00FBE1E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */; };
 		8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */; };
 		8A225B5628AA66EE00FBE1E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */; };
 		8A225B5928AA66EE00FBE1E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B5728AA66EE00FBE1E4 /* LaunchScreen.storyboard */; };
+		8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8A225B4628AA66ED00FBE1E4 /* iOS6-HW26-DmitryDorodniy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS6-HW26-DmitryDorodniy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8A225B4D28AA66ED00FBE1E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8A225B5028AA66ED00FBE1E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A225B5328AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOS6_HW26_DmitryDorodniy.xcdatamodel; sourceTree = "<group>"; };
 		8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A225B5828AA66EE00FBE1E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A225B5A28AA66EE00FBE1E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		8A225B4828AA66ED00FBE1E4 /* iOS6-HW26-DmitryDorodniy */ = {
 			isa = PBXGroup;
 			children = (
-				8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */,
-				8A225B4D28AA66ED00FBE1E4 /* ViewController.swift */,
-				8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */,
-				8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */,
-				8A225B5728AA66EE00FBE1E4 /* LaunchScreen.storyboard */,
-				8A225B5A28AA66EE00FBE1E4 /* Info.plist */,
+				8A225B6028AAABC600FBE1E4 /* Source */,
+				8A225B6128AAABE200FBE1E4 /* Resource */,
 				8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */,
 			);
 			path = "iOS6-HW26-DmitryDorodniy";
+			sourceTree = "<group>";
+		};
+		8A225B6028AAABC600FBE1E4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				8A225B6228AAAC8500FBE1E4 /* App */,
+				8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */,
+				8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */,
+				8A225B6328AAAD2200FBE1E4 /* Storyboards */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		8A225B6128AAABE200FBE1E4 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8A225B5A28AA66EE00FBE1E4 /* Info.plist */,
+				8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		8A225B6228AAAC8500FBE1E4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8A225B6328AAAD2200FBE1E4 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */,
+				8A225B5728AA66EE00FBE1E4 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */,
-				8A225B4E28AA66ED00FBE1E4 /* ViewController.swift in Sources */,
+				8A225B4E28AA66ED00FBE1E4 /* MainViewController.swift in Sources */,
 				8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */,
+				8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JZ3AHZ382V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS6-HW26-DmitryDorodniy/Info.plist";
+				INFOPLIST_FILE = "iOS6-HW26-DmitryDorodniy/resource/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -317,7 +353,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JZ3AHZ382V;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS6-HW26-DmitryDorodniy/Info.plist";
+				INFOPLIST_FILE = "iOS6-HW26-DmitryDorodniy/resource/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
