@@ -14,6 +14,8 @@
 		8A225B5628AA66EE00FBE1E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */; };
 		8A225B5928AA66EE00FBE1E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B5728AA66EE00FBE1E4 /* LaunchScreen.storyboard */; };
 		8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */; };
+		8A225B6828ABCF1C00FBE1E4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A225B6728ABCF1C00FBE1E4 /* SnapKit */; };
+		8A225B6A28ABDC6300FBE1E4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B6928ABDC6300FBE1E4 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		8A225B5828AA66EE00FBE1E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A225B5A28AA66EE00FBE1E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8A225B6928ABDC6300FBE1E4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A225B6828ABCF1C00FBE1E4 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +74,7 @@
 			children = (
 				8A225B6228AAAC8500FBE1E4 /* App */,
 				8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */,
+				8A225B6928ABDC6300FBE1E4 /* TableViewCell.swift */,
 				8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */,
 				8A225B6328AAAD2200FBE1E4 /* Storyboards */,
 			);
@@ -118,6 +123,9 @@
 			dependencies = (
 			);
 			name = "iOS6-HW26-DmitryDorodniy";
+			packageProductDependencies = (
+				8A225B6728ABCF1C00FBE1E4 /* SnapKit */,
+			);
 			productName = "iOS6-HW26-DmitryDorodniy";
 			productReference = 8A225B4628AA66ED00FBE1E4 /* iOS6-HW26-DmitryDorodniy.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +154,9 @@
 				Base,
 			);
 			mainGroup = 8A225B3D28AA66ED00FBE1E4;
+			packageReferences = (
+				8A225B6628ABCF1C00FBE1E4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 8A225B4728AA66ED00FBE1E4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -173,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A225B6A28ABDC6300FBE1E4 /* TableViewCell.swift in Sources */,
 				8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */,
 				8A225B4E28AA66ED00FBE1E4 /* MainViewController.swift in Sources */,
 				8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */,
@@ -394,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A225B6628ABCF1C00FBE1E4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A225B6728ABCF1C00FBE1E4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A225B6628ABCF1C00FBE1E4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */ = {
