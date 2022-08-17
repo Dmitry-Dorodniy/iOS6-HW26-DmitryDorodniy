@@ -15,12 +15,20 @@ class DetailViewController: UIViewController {
         button.layer.borderWidth = 1.5
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.masksToBounds = true
+        button.setTitle("  Edit  ", for: .normal)
         var config = UIButton.Configuration.borderedTinted()
         config.titleAlignment = .center
-        config.title = "Edit"
+//        config.title = "Edit"
 //        config.cornerStyle = .large
         button.configuration = config
+        button.addTarget(self, action: #selector(editButtonPressed), for: .allEvents)
         return button
+    }()
+
+    private lazy var avatarImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "sun")
+        return imageView
     }()
 
     override func viewDidLoad() {
@@ -36,8 +44,17 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
     }
 
+    private func setupHierarchy() {
+        view.addSubview(avatarImage)
+    }
+
+    private func setupLayout() {
+        
+    }
+
     @objc func editButtonPressed() {
 print("edit")
+        editButton.setTitle("Save", for: .normal)
     }
 
 }
