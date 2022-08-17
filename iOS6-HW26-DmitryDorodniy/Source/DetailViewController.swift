@@ -36,46 +36,111 @@ class DetailViewController: UIViewController {
         return imageView
     }()
 
-    private lazy var nameImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .lightGray
-        imageView.image = UIImage(systemName: "person")
-        return imageView
-    }()
+//    private lazy var spacingView: UIView = {
+//        let view = UIView()
+//        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
+//        return view
+//    }()
+
+//    private lazy var nameImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.contentMode = .scaleAspectFit
+//        imageView.tintColor = .lightGray
+//        imageView.image = UIImage(systemName: "person")
+//        return imageView
+//    }()
 
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-//        textField.borderStyle = .roundedRect
         textField.leftViewMode = .always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .lightGray
         let image = UIImage(systemName: "person")
         imageView.image = image
-        textField.leftView = imageView
-        textField.text = "dfdfdfdf"
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
+                                                             width: imageView.frame.width + 20,
+                                                             height: imageView.frame.height + 10))
+        iconContainerView.addSubview(imageView)
+        textField.leftView = iconContainerView
+        textField.text = "Вася Пупкин"
         return textField
     }()
 
-    private lazy var textFieldStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 10
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        [self.nameImageView,
-            self.nameTextField].forEach { stack.addArrangedSubview($0) }
-        return stack
+    private lazy var dateOfBirthTextField: UITextField = {
+        let textField = UITextField()
+        textField.leftViewMode = .always
+        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .lightGray
+        let image = UIImage(systemName: "calendar")
+        imageView.image = image
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
+                                                             width: imageView.frame.width + 20,
+                                                             height: imageView.frame.height + 10))
+        iconContainerView.addSubview(imageView)
+        textField.leftView = iconContainerView
+        textField.text = "10.23.4544"
+        return textField
     }()
+
+    private lazy var genderTextField: UITextField = {
+        let textField = UITextField()
+        textField.leftViewMode = .always
+        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .lightGray
+        let image = UIImage(systemName: "person.2.circle")
+        imageView.image = image
+        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
+                                                             width: imageView.frame.width + 20,
+                                                             height: imageView.frame.height + 10))
+        iconContainerView.addSubview(imageView)
+        textField.leftView = iconContainerView
+        textField.text = "female"
+        return textField
+    }()
+
+    private lazy var lineUnderNameTextField: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        return view
+    }()
+
+    private lazy var lineUnderDateOfBirthTextField: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        return view
+    }()
+
+    private lazy var lineUnderGenderTextField: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        return view
+    }()
+
+
+//    private lazy var textFieldStackView: UIStackView = {
+//        let stack = UIStackView()
+//        stack.axis = .horizontal
+//        stack.spacing = 10
+//        stack.distribution = .fillProportionally
+//        stack.alignment = .center
+//        [self.nameImageView,
+//            self.nameTextField,
+//         self.spacingView].forEach { stack.addArrangedSubview($0) }
+//        return stack
+//    }()
 
     private lazy var dataStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 10
-        stack.distribution = .equalSpacing
+        stack.distribution = .fillEqually
         stack.alignment = .fill
-        [self.textFieldStackView].forEach { stack.addArrangedSubview($0) }
+        [nameTextField,
+        dateOfBirthTextField,
+        genderTextField].forEach { stack.addArrangedSubview($0) }
         return stack
     }()
 
@@ -99,6 +164,10 @@ class DetailViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(avatarImage)
         view.addSubview(dataStackView)
+        view.addSubview(lineUnderNameTextField)
+        view.addSubview(lineUnderDateOfBirthTextField)
+        view.addSubview(lineUnderGenderTextField)
+
     }
 
     private func setupLayout() {
@@ -116,6 +185,25 @@ class DetailViewController: UIViewController {
         dataStackView.snp.makeConstraints { make in
             make.top.equalTo(avatarImage.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(150)
+        }
+
+        lineUnderNameTextField.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(dataStackView)
+            make.top.equalTo(nameTextField.snp.bottom)
+            make.height.equalTo(2)
+        }
+
+        lineUnderDateOfBirthTextField.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(dataStackView)
+            make.top.equalTo(dateOfBirthTextField.snp.bottom)
+            make.height.equalTo(2)
+        }
+
+        lineUnderGenderTextField.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(dataStackView)
+            make.top.equalTo(genderTextField.snp.bottom)
+            make.height.equalTo(2)
         }
     }
 
