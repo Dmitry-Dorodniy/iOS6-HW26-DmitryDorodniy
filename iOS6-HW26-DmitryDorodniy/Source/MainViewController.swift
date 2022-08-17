@@ -28,6 +28,7 @@ class MainViewController: UIViewController {
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1.5
+        textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.systemGroupedBackground.cgColor
 
 //        textField.backgroundColor = .systemGroupedBackground
@@ -127,6 +128,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 //    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(DetailViewController(), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

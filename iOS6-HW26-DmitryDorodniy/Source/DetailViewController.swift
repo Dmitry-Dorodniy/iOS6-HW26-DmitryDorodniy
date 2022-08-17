@@ -9,21 +9,35 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    private lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 12
+        button.layer.borderWidth = 1.5
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.masksToBounds = true
+        var config = UIButton.Configuration.borderedTinted()
+        config.titleAlignment = .center
+        config.title = "Edit"
+//        config.cornerStyle = .large
+        button.configuration = config
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupView()
     }
-    
 
-    /*
-    // MARK: - Navigation
+    private func setupView() {
+        view.backgroundColor = .systemBackground
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
     }
-    */
+
+    @objc func editButtonPressed() {
+print("edit")
+    }
 
 }
