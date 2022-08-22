@@ -8,8 +8,8 @@
 import Foundation
 
 struct Contact {
-    var name: String
-    var dateOfBirth: String?
+    var name: String?
+    var dateOfBirth: Date?
     var gender: String?
 }
 

@@ -10,7 +10,7 @@
 		8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4928AA66ED00FBE1E4 /* AppDelegate.swift */; };
 		8A225B4E28AA66ED00FBE1E4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */; };
 		8A225B5128AA66ED00FBE1E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B4F28AA66ED00FBE1E4 /* Main.storyboard */; };
-		8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */; };
+		8A225B5428AA66ED00FBE1E4 /* PersonModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B5228AA66ED00FBE1E4 /* PersonModel.xcdatamodeld */; };
 		8A225B5628AA66EE00FBE1E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */; };
 		8A225B5928AA66EE00FBE1E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A225B5728AA66EE00FBE1E4 /* LaunchScreen.storyboard */; };
 		8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */; };
@@ -18,7 +18,8 @@
 		8A225B6A28ABDC6300FBE1E4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A225B6928ABDC6300FBE1E4 /* TableViewCell.swift */; };
 		8A366F7528AE402F004457D1 /* TextField + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F7428AE402F004457D1 /* TextField + Ext.swift */; };
 		8A366F7828AE50AC004457D1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F7728AE50AC004457D1 /* Contact.swift */; };
-		8A366F7D28AE5F62004457D1 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F7C28AE5F62004457D1 /* Person.swift */; };
+		8A366F8328B3DD72004457D1 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */; };
+		8A366F8428B3DD72004457D1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F8228B3DD72004457D1 /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,8 @@
 		8A225B6928ABDC6300FBE1E4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8A366F7428AE402F004457D1 /* TextField + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField + Ext.swift"; sourceTree = "<group>"; };
 		8A366F7728AE50AC004457D1 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		8A366F7C28AE5F62004457D1 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8A366F8228B3DD72004457D1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +72,7 @@
 			children = (
 				8A225B6028AAABC600FBE1E4 /* Source */,
 				8A225B6128AAABE200FBE1E4 /* Resource */,
-				8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */,
+				8A225B5228AA66ED00FBE1E4 /* PersonModel.xcdatamodeld */,
 			);
 			path = "iOS6-HW26-DmitryDorodniy";
 			sourceTree = "<group>";
@@ -118,8 +120,9 @@
 		8A366F7628AE5091004457D1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */,
+				8A366F8228B3DD72004457D1 /* Person+CoreDataProperties.swift */,
 				8A366F7728AE50AC004457D1 /* Contact.swift */,
-				8A366F7C28AE5F62004457D1 /* Person.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,11 +214,12 @@
 			files = (
 				8A225B6A28ABDC6300FBE1E4 /* TableViewCell.swift in Sources */,
 				8A366F7528AE402F004457D1 /* TextField + Ext.swift in Sources */,
-				8A225B5428AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld in Sources */,
+				8A225B5428AA66ED00FBE1E4 /* PersonModel.xcdatamodeld in Sources */,
 				8A225B4E28AA66ED00FBE1E4 /* MainViewController.swift in Sources */,
 				8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */,
+				8A366F8328B3DD72004457D1 /* Person+CoreDataClass.swift in Sources */,
+				8A366F8428B3DD72004457D1 /* Person+CoreDataProperties.swift in Sources */,
 				8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */,
-				8A366F7D28AE5F62004457D1 /* Person.swift in Sources */,
 				8A366F7828AE50AC004457D1 /* Contact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,13 +459,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		8A225B5228AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodeld */ = {
+		8A225B5228AA66ED00FBE1E4 /* PersonModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				8A225B5328AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodel */,
 			);
 			currentVersion = 8A225B5328AA66ED00FBE1E4 /* iOS6_HW26_DmitryDorodniy.xcdatamodel */;
-			path = iOS6_HW26_DmitryDorodniy.xcdatamodeld;
+			path = PersonModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
