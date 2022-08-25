@@ -168,8 +168,10 @@ class MainViewController: UIViewController {
         guard enterTextField.text != "" else {return}
         print(enterTextField.text)
         if let text = enterTextField.text {
+
             contacts.append(Contact(name: text))
-            tableView.reloadData()
+//            tableView.reloadData()
+            tableView.insertRows(at: [IndexPath(row: contacts.count - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
         }
     }
