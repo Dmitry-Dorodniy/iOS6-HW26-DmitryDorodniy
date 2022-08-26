@@ -11,28 +11,30 @@ import CoreData
 
 class MainViewController: UIViewController {
 
-    var contacts = [Contact]()
-
+//    var contacts = [Contact]()
+var contacts = [Person]()
+    let storageManager = StorageManager()
+//    let storageManager = UIApplication.shared.delegate as! StorageManager
 
     func createContextManager() {
 //        Ссылка на AppDelegate
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//    let storageManager = UIApplication.shared.delegate as! StorageManager
 
 //        Создаём контекст
-        let context: NSManagedObjectContext = appDelegate.persistentContainer.viewContext
-//        Описание сущности
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context) else {return}
-//        Создаём объект
-//        let managedObject = NSManagedObject(entity: entityDescription, insertInto: context)
-        let managedObject = Person(entity: entityDescription, insertInto: context)
-//Установка значений атрибутов
-        let currentDate = Date()
-//        managedObject.setValue("Яна Пупкина", forKey: "name")
-//        managedObject.setValue(currentDate, forKey: "dateOfBirth")
-//        managedObject.setValue("female", forKey: "gender")
-        managedObject.name = "Яна Пупкина"
-        managedObject.dateOfBirth = currentDate
-        managedObject.gender = "female"
+       let context: NSManagedObjectContext = storageManager.persistentContainer.viewContext
+////        Описание сущности
+//        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context) else {return}
+////        Создаём объект
+////        let managedObject = NSManagedObject(entity: entityDescription, insertInto: context)
+//        let managedObject = Person(entity: entityDescription, insertInto: context)
+////Установка значений атрибутов
+//        let currentDate = Date()
+////        managedObject.setValue("Яна Пупкина", forKey: "name")
+////        managedObject.setValue(currentDate, forKey: "dateOfBirth")
+////        managedObject.setValue("female", forKey: "gender")
+//        managedObject.name = "Яна Пупкина"
+//        managedObject.dateOfBirth = currentDate
+//        managedObject.gender = "female"
 
 //        let name = managedObject.value(forKey: "name")
 //        сохранение данных
@@ -41,14 +43,15 @@ class MainViewController: UIViewController {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
         do {
             let results = try context.fetch(fetchRequest)
+contacts = results as! [Person]
             for result in results as! [Person] {
                 let name = result.name
                 let date = result.dateOfBirth
                 let gender = result.gender
 
-                contacts.append(Contact(name: name,
-                                        dateOfBirth: date,
-                                        gender: gender))
+//                contacts.append(Contact(name: name,
+//                                        dateOfBirth: date,
+//                                        gender: gender))
 
                 print("name: \(name), date: \(date), gender: \(gender)")
             }
@@ -68,7 +71,7 @@ class MainViewController: UIViewController {
             print(error)
         }
 
-        appDelegate.saveContext()
+//        storageManager.saveContext()
     }
 
 
@@ -119,7 +122,9 @@ class MainViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
-        createContextManager()
+//        storageManager.deleteAllData()
+        contacts = storageManager.fetchAllPerson() ?? []
+//        createContextManager()
     }
 
     // MARK: - Private functions
@@ -166,11 +171,13 @@ class MainViewController: UIViewController {
 
     @objc func buttonAction() {
         guard enterTextField.text != "" else {return}
-        print(enterTextField.text)
+        print(enterTextField.text as Any)
         if let text = enterTextField.text {
-
-            contacts.append(Contact(name: text))
+            storageManager.savePerson(name: text)
+//            contacts.append(Contact(name: text))
+            contacts = storageManager.fetchAllPerson() ?? []
 //            tableView.reloadData()
+
             tableView.insertRows(at: [IndexPath(row: contacts.count - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
         }

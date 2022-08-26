@@ -20,6 +20,7 @@
 		8A366F7828AE50AC004457D1 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F7728AE50AC004457D1 /* Contact.swift */; };
 		8A366F8328B3DD72004457D1 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */; };
 		8A366F8428B3DD72004457D1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F8228B3DD72004457D1 /* Person+CoreDataProperties.swift */; };
+		8A366F9328B8A723004457D1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9228B8A723004457D1 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		8A366F7728AE50AC004457D1 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A366F8228B3DD72004457D1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8A366F9228B8A723004457D1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */,
 				8A225B6928ABDC6300FBE1E4 /* TableViewCell.swift */,
 				8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */,
+				8A366F9128B8A6A5004457D1 /* Services */,
 				8A366F7E28AE6048004457D1 /* Extentions */,
 				8A225B6328AAAD2200FBE1E4 /* Storyboards */,
 			);
@@ -133,6 +136,14 @@
 				8A366F7428AE402F004457D1 /* TextField + Ext.swift */,
 			);
 			path = Extentions;
+			sourceTree = "<group>";
+		};
+		8A366F9128B8A6A5004457D1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8A366F9228B8A723004457D1 /* StorageManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */,
 				8A366F8328B3DD72004457D1 /* Person+CoreDataClass.swift in Sources */,
 				8A366F8428B3DD72004457D1 /* Person+CoreDataProperties.swift in Sources */,
+				8A366F9328B8A723004457D1 /* StorageManager.swift in Sources */,
 				8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */,
 				8A366F7828AE50AC004457D1 /* Contact.swift in Sources */,
 			);

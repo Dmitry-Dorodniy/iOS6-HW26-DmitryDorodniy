@@ -1,0 +1,83 @@
+//
+//  StorageManager.swift
+//  iOS6-HW26-DmitryDorodniy
+//
+//  Created by Dmitry Dorodniy on 26.08.2022.
+//
+
+import CoreData
+
+class StorageManager {
+
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+// MARK: - Core Data stack
+
+lazy var persistentContainer: NSPersistentContainer = {
+
+    let container = NSPersistentContainer(name: "PersonModel")
+    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        if let error = error as NSError? {
+            fatalError("Unresolved error \(error), \(error.userInfo)")
+        }
+    })
+    return container
+}()
+
+   private lazy var context: NSManagedObjectContext = persistentContainer.viewContext
+
+    func savePerson(name: String) {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
+                                                                 in: context) else {return}
+        let newPerson = Person(entity: entityDescription,
+                                   insertInto: context)
+        newPerson.name = name
+        saveContext()
+    }
+
+    func fetchAllPerson() -> [Person]? {
+        do {
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+            let results = try context.fetch(fetchRequest)
+            let persons = results as! [Person]
+            for result in results as! [Person] {
+                let name = result.name
+                let date = result.dateOfBirth
+                let gender = result.gender
+                print("name: \(name), date: \(date), gender: \(gender)")
+            }
+            return persons
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+
+    // MARK: - Delete all data
+    func deleteAllData() {
+        do {
+            let results = try context.fetch(fetchRequest)
+            for result in results as! [NSManagedObject] {
+                context.delete(result)
+            }
+        } catch {
+            print(error)
+        }
+        saveContext()
+    }
+
+
+// MARK: - Core Data Saving support
+
+func saveContext () {
+    let context = persistentContainer.viewContext
+    if context.hasChanges {
+        do {
+            try context.save()
+        } catch {
+
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+}
+}
