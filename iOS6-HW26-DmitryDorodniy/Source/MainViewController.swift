@@ -7,12 +7,11 @@
 
 import UIKit
 import SnapKit
-import CoreData
 
 class MainViewController: UIViewController {
 
-//    var contacts = [Contact]()
-var contacts = [Person]()
+    //    var contacts = [Contact]()
+    var contacts = [Person]()
     let storageManager = StorageManager()
 
     // MARK: - Private Properties
@@ -29,13 +28,14 @@ var contacts = [Person]()
     private lazy var enterTextField: UITextField = {
         let textField = UITextField()
 
+        textField.delegate = self
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 12
         textField.layer.borderWidth = 1.5
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.systemGroupedBackground.cgColor
 
-//        textField.backgroundColor = .systemGroupedBackground
+        //        textField.backgroundColor = .systemGroupedBackground
         textField.placeholder = "Enter your name here..."
         return textField
     }()
@@ -61,9 +61,9 @@ var contacts = [Person]()
         setupView()
         setupHierarchy()
         setupLayout()
-//        storageManager.deleteAllData()
+        //        storageManager.deleteAllData()
         contacts = storageManager.fetchAllPerson() ?? []
-//        createContextManager()
+        //        createContextManager()
     }
 
     // MARK: - Private functions
@@ -86,7 +86,7 @@ var contacts = [Person]()
 
         enterTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-//            make.width.equalTo(tableView)
+            //            make.width.equalTo(tableView)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.height.equalTo(40)
@@ -103,8 +103,8 @@ var contacts = [Person]()
         tableView.snp.makeConstraints { make in
             make.top.equalTo(button.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalTo(view)
-//            make.trailing.equalTo(view)
-//            make.bottom.equalTo(view)
+            //            make.trailing.equalTo(view)
+            //            make.bottom.equalTo(view)
         }
     }
 
@@ -113,9 +113,9 @@ var contacts = [Person]()
         print(enterTextField.text as Any)
         if let text = enterTextField.text {
             storageManager.savePerson(name: text)
-//            contacts.append(Contact(name: text))
+            //            contacts.append(Contact(name: text))
             contacts = storageManager.fetchAllPerson() ?? []
-//            tableView.reloadData()
+            //            tableView.reloadData()
 
             tableView.insertRows(at: [IndexPath(row: contacts.count - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
@@ -139,7 +139,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         //        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:indexPath) as? TableViewCell else { return UITableViewCell() }
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
-//        content.image = UIImage(systemName: "play")
+        //        content.image = UIImage(systemName: "play")
         content.text = contacts[indexPath.row].name
         cell.contentConfiguration = content
         return cell
@@ -158,5 +158,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(DetailViewController(), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
 
+extension MainViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        buttonAction()
+        return true
+    }
 }

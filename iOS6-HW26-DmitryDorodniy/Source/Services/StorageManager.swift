@@ -9,42 +9,37 @@ import CoreData
 
 class StorageManager {
 
-    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-// MARK: - Core Data stack
+    // MARK: - Properties
 
-lazy var persistentContainer: NSPersistentContainer = {
+   private let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
 
-    let container = NSPersistentContainer(name: "PersonModel")
-    container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-        if let error = error as NSError? {
-            fatalError("Unresolved error \(error), \(error.userInfo)")
-        }
-    })
-    return container
-}()
+    private lazy var persistentContainer: NSPersistentContainer = {
 
-   private lazy var context: NSManagedObjectContext = persistentContainer.viewContext
+        let container = NSPersistentContainer(name: "PersonModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    private lazy var context: NSManagedObjectContext = persistentContainer.viewContext
+
+    // MARK: - Functions
 
     func savePerson(name: String) {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
                                                                  in: context) else {return}
         let newPerson = Person(entity: entityDescription,
-                                   insertInto: context)
+                               insertInto: context)
         newPerson.name = name
         saveContext()
     }
 
     func fetchAllPerson() -> [Person]? {
         do {
-//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
             let persons = try context.fetch(fetchRequest) as? [Person]
-//            let persons = results as! [Person]
-            for person in persons as! [Person] {
-                let name = person.name
-                let date = person.dateOfBirth
-                let gender = person.gender
-                print("name: \(name), date: \(date), gender: \(gender)")
-            }
             return persons
         } catch {
             print(error)
@@ -54,10 +49,11 @@ lazy var persistentContainer: NSPersistentContainer = {
 
     func deletePerson(person: Person) {
         context.delete(person)
-       saveContext()
+        saveContext()
     }
 
     // MARK: - Delete all data
+
     func deleteAllData() {
         do {
             let results = try context.fetch(fetchRequest)
@@ -70,17 +66,16 @@ lazy var persistentContainer: NSPersistentContainer = {
         saveContext()
     }
 
+    // MARK: - Core Data Saving support
 
-// MARK: - Core Data Saving support
-
-private func saveContext () {
-    if context.hasChanges {
-        do {
-            try context.save()
-        } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    private func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
-}
 }
