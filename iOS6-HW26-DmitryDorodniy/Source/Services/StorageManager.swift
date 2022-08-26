@@ -37,12 +37,12 @@ lazy var persistentContainer: NSPersistentContainer = {
     func fetchAllPerson() -> [Person]? {
         do {
 //            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-            let results = try context.fetch(fetchRequest)
-            let persons = results as! [Person]
-            for result in results as! [Person] {
-                let name = result.name
-                let date = result.dateOfBirth
-                let gender = result.gender
+            let persons = try context.fetch(fetchRequest) as? [Person]
+//            let persons = results as! [Person]
+            for person in persons as! [Person] {
+                let name = person.name
+                let date = person.dateOfBirth
+                let gender = person.gender
                 print("name: \(name), date: \(date), gender: \(gender)")
             }
             return persons
@@ -50,6 +50,11 @@ lazy var persistentContainer: NSPersistentContainer = {
             print(error)
             return nil
         }
+    }
+
+    func deletePerson(person: Person) {
+        context.delete(person)
+       saveContext()
     }
 
     // MARK: - Delete all data
@@ -68,13 +73,11 @@ lazy var persistentContainer: NSPersistentContainer = {
 
 // MARK: - Core Data Saving support
 
-func saveContext () {
-    let context = persistentContainer.viewContext
+private func saveContext () {
     if context.hasChanges {
         do {
             try context.save()
         } catch {
-
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
