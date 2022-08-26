@@ -14,67 +14,6 @@ class MainViewController: UIViewController {
 //    var contacts = [Contact]()
 var contacts = [Person]()
     let storageManager = StorageManager()
-//    let storageManager = UIApplication.shared.delegate as! StorageManager
-
-    func createContextManager() {
-//        Ссылка на AppDelegate
-//    let storageManager = UIApplication.shared.delegate as! StorageManager
-
-//        Создаём контекст
-       let context: NSManagedObjectContext = storageManager.persistentContainer.viewContext
-////        Описание сущности
-//        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: context) else {return}
-////        Создаём объект
-////        let managedObject = NSManagedObject(entity: entityDescription, insertInto: context)
-//        let managedObject = Person(entity: entityDescription, insertInto: context)
-////Установка значений атрибутов
-//        let currentDate = Date()
-////        managedObject.setValue("Яна Пупкина", forKey: "name")
-////        managedObject.setValue(currentDate, forKey: "dateOfBirth")
-////        managedObject.setValue("female", forKey: "gender")
-//        managedObject.name = "Яна Пупкина"
-//        managedObject.dateOfBirth = currentDate
-//        managedObject.gender = "female"
-
-//        let name = managedObject.value(forKey: "name")
-//        сохранение данных
-//        appDelegate.saveContext()
-//  Извлекаем данные
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        do {
-            let results = try context.fetch(fetchRequest)
-contacts = results as! [Person]
-            for result in results as! [Person] {
-                let name = result.name
-                let date = result.dateOfBirth
-                let gender = result.gender
-
-//                contacts.append(Contact(name: name,
-//                                        dateOfBirth: date,
-//                                        gender: gender))
-
-                print("name: \(name), date: \(date), gender: \(gender)")
-            }
-    } catch {
-        print(error)
-    }
-
-        // Удаление ВСЕХ данных
-
-        do {
-            let results = try context.fetch(fetchRequest)
-            for result in results as! [NSManagedObject] {
-                context.delete(result)
-
-            }
-        } catch {
-            print(error)
-        }
-
-//        storageManager.saveContext()
-    }
-
-
 
     // MARK: - Private Properties
 
