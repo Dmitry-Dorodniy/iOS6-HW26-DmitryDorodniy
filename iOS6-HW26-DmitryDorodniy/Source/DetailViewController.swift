@@ -13,11 +13,6 @@ class DetailViewController: UIViewController {
     var contacts = [Person]()
     let storageManager = StorageManager()
 
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-//        super.setEditing(editing, animated: animated)
-//
-//    }
-
     private lazy var editButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 12
@@ -43,77 +38,27 @@ class DetailViewController: UIViewController {
         return imageView
     }()
 
-//    private lazy var spacingView: UIView = {
-//        let view = UIView()
-//        view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//        return view
-//    }()
-
-//    private lazy var nameImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        imageView.image = UIImage(systemName: "person")
-//        return imageView
-//    }()
-
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
 
         textField.setting(systemImage: "person", text: "Яна Брбсва")
-//        textField.isUserInteractionEnabled = false
-////        textField.delegate = self
-//        textField.leftViewMode = .always
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        let image = UIImage(systemName: "person")
-//        imageView.image = image
-//        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
-//                                                             width: imageView.frame.width + 20,
-//                                                             height: imageView.frame.height + 10))
-//        iconContainerView.addSubview(imageView)
-//        textField.leftView = iconContainerView
-//        textField.text = "Вася Пупкин"
         return textField
     }()
-
-    lazy var birthdayDatePicker: UIDatePicker = {
-        var datePicker = UIDatePicker()
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.maximumDate = Date.now
-        datePicker.datePickerMode = .date
-        datePicker.isEnabled = true
-        return datePicker
-    }()
-
-    
 
     private lazy var dateOfBirthTextField: UITextField = {
 
         let textField = UITextField()
         let currentDate = Date()
         textField.setting(systemImage: "calendar", text: currentDate.convertToString())
-        textField.inputView = birthdayDatePicker
-
+        textField.datePicker(target: self,
+                             doneAction: #selector(doneAction),
+                             cancelAction: #selector(cancelAction))
         return textField
     }()
 
     private lazy var genderTextField: UITextField = {
         let textField = UITextField()
         textField.setting(systemImage: "person.2.circle", text: "female")
-//        textField.leftViewMode = .always
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        let image = UIImage(systemName: "person.2.circle")
-//        imageView.image = image
-//        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
-//                                                             width: imageView.frame.width + 20,
-//                                                             height: imageView.frame.height + 10))
-//        iconContainerView.addSubview(imageView)
-//        textField.leftView = iconContainerView
-//        textField.text = "female"
         return textField
     }()
 
@@ -214,7 +159,8 @@ class DetailViewController: UIViewController {
 
     // MARK: - OBJC Functions
 
-    @objc func editButtonPressed() {
+    @objc
+    func editButtonPressed() {
 
         isEdit.toggle()
         if isEdit {
@@ -228,23 +174,40 @@ class DetailViewController: UIViewController {
             setupEditButton(title: "Edit", borderColor: .lightGray)
             nameTextField.isUserInteractionEnabled = false
             dateOfBirthTextField.isUserInteractionEnabled = false
+            doneAction()
             genderTextField.isUserInteractionEnabled = false
 //            editButton.setTitle("Edit", for: .normal)
 //            editButton.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
 
+    @objc
+    func cancelAction() {
 
+        self.dateOfBirthTextField.resignFirstResponder()
+    }
 
-}
+    @objc
+    func doneAction() {
 
-extension DetailViewController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if !isEdit {
-        if textField == nameTextField {
-            return false; //do not show keyboard nor cursor
+        if let datePickerView = self.dateOfBirthTextField.inputView as? UIDatePicker {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let dateString = dateFormatter.string(from: datePickerView.date)
+            self.dateOfBirthTextField.text = dateString
+
+            self.dateOfBirthTextField.resignFirstResponder()
         }
-        }
-        return true
     }
 }
+
+//extension DetailViewController: UITextFieldDelegate {
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        if !isEdit {
+//        if textField == nameTextField {
+//            return false; //do not show keyboard nor cursor
+//        }
+//        }
+//        return true
+//    }
+//}
