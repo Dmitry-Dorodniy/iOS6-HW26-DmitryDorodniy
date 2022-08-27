@@ -28,12 +28,27 @@ class StorageManager {
 
     // MARK: - Functions
 
-    func savePerson(name: String) {
+    func savePersonName(_ name: String) {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
                                                                  in: context) else {return}
         let newPerson = Person(entity: entityDescription,
                                insertInto: context)
         newPerson.name = name
+        saveContext()
+    }
+
+    func savePerson(_ name: String, _ dateOfBirth: Date?, _ gender: String?) {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
+                                                                 in: context) else {return}
+        let newPerson = Person(entity: entityDescription,
+                               insertInto: context)
+        newPerson.name = name
+        if let dateOfBirth = dateOfBirth {
+            newPerson.dateOfBirth = dateOfBirth
+        }
+        if let gender = gender {
+            newPerson.gender = gender
+        }
         saveContext()
     }
 

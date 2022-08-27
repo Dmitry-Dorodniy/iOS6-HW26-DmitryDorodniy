@@ -10,6 +10,8 @@ import UIKit
 class DetailViewController: UIViewController {
 
     var isEdit = Bool()
+    var contacts = [Person]()
+    let storageManager = StorageManager()
 
 //    override func setEditing(_ editing: Bool, animated: Bool) {
 //        super.setEditing(editing, animated: animated)
@@ -57,6 +59,7 @@ class DetailViewController: UIViewController {
 
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
+
         textField.setting(systemImage: "person", text: "Яна Брбсва")
 //        textField.isUserInteractionEnabled = false
 ////        textField.delegate = self
@@ -84,23 +87,15 @@ class DetailViewController: UIViewController {
         return datePicker
     }()
 
+    
+
     private lazy var dateOfBirthTextField: UITextField = {
 
         let textField = UITextField()
-        textField.setting(systemImage: "calendar", text: "10.23.4544")
+        let currentDate = Date()
+        textField.setting(systemImage: "calendar", text: currentDate.convertToString())
         textField.inputView = birthdayDatePicker
-//        textField.leftViewMode = .always
-//        let imageView = UIImageView(frame: CGRect(x: 5, y: 5, width: 30, height: 30))
-//        imageView.contentMode = .scaleAspectFit
-//        imageView.tintColor = .lightGray
-//        let image = UIImage(systemName: "calendar")
-//        imageView.image = image
-//        let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0,
-//                                                             width: imageView.frame.width + 20,
-//                                                             height: imageView.frame.height + 10))
-//        iconContainerView.addSubview(imageView)
-//        textField.leftView = iconContainerView
-//        textField.text = "10.23.4544"
+
         return textField
     }()
 
@@ -141,18 +136,6 @@ class DetailViewController: UIViewController {
     }()
 
 
-//    private lazy var textFieldStackView: UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .horizontal
-//        stack.spacing = 10
-//        stack.distribution = .fillProportionally
-//        stack.alignment = .center
-//        [self.nameImageView,
-//            self.nameTextField,
-//         self.spacingView].forEach { stack.addArrangedSubview($0) }
-//        return stack
-//    }()
-
     private lazy var dataStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -172,6 +155,8 @@ class DetailViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
+
+        contacts = storageManager.fetchAllPerson() ?? []
     }
 
     private func setupView() {
@@ -188,7 +173,6 @@ class DetailViewController: UIViewController {
         view.addSubview(lineUnderNameTextField)
         view.addSubview(lineUnderDateOfBirthTextField)
         view.addSubview(lineUnderGenderTextField)
-
     }
 
 
@@ -221,18 +205,6 @@ class DetailViewController: UIViewController {
      setUnderlineView(lineUnderNameTextField, under: nameTextField)
         setUnderlineView(lineUnderDateOfBirthTextField, under: dateOfBirthTextField)
         setUnderlineView(lineUnderGenderTextField, under: genderTextField)
-
-//        lineUnderDateOfBirthTextField.snp.makeConstraints { make in
-//            make.leading.trailing.equalTo(dataStackView)
-//            make.top.equalTo(dateOfBirthTextField.snp.bottom)
-//            make.height.equalTo(2)
-//        }
-//
-//        lineUnderGenderTextField.snp.makeConstraints { make in
-//            make.leading.trailing.equalTo(dataStackView)
-//            make.top.equalTo(genderTextField.snp.bottom)
-//            make.height.equalTo(2)
-//        }
     }
 
     private func setupEditButton(title: String, borderColor: UIColor) {
@@ -240,8 +212,9 @@ class DetailViewController: UIViewController {
         editButton.layer.borderColor = borderColor.cgColor
     }
 
+    // MARK: - OBJC Functions
+
     @objc func editButtonPressed() {
-print("edit")
 
         isEdit.toggle()
         if isEdit {
@@ -260,6 +233,8 @@ print("edit")
 //            editButton.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
+
+
 
 }
 

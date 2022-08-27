@@ -11,8 +11,9 @@ import SnapKit
 class MainViewController: UIViewController {
 
     //    var contacts = [Contact]()
-    var contacts = [Person]()
+//    var contacts = [Person]()
     let storageManager = StorageManager()
+    var presenter = MainPresenter()
 
     // MARK: - Private Properties
 
@@ -34,8 +35,6 @@ class MainViewController: UIViewController {
         textField.layer.borderWidth = 1.5
         textField.borderStyle = .roundedRect
         textField.layer.borderColor = UIColor.systemGroupedBackground.cgColor
-
-        //        textField.backgroundColor = .systemGroupedBackground
         textField.placeholder = "Enter your name here..."
         return textField
     }()
@@ -62,7 +61,8 @@ class MainViewController: UIViewController {
         setupHierarchy()
         setupLayout()
         //        storageManager.deleteAllData()
-        contacts = storageManager.fetchAllPerson() ?? []
+        presenter.fetchAllPerson()
+//        contacts = storageManager.fetchAllPerson() ?? []
         //        createContextManager()
     }
 
@@ -97,14 +97,11 @@ class MainViewController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
             make.height.equalTo(40)
-
         }
 
         tableView.snp.makeConstraints { make in
             make.top.equalTo(button.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalTo(view)
-            //            make.trailing.equalTo(view)
-            //            make.bottom.equalTo(view)
         }
     }
 
@@ -112,17 +109,17 @@ class MainViewController: UIViewController {
         guard enterTextField.text != "" else {return}
         print(enterTextField.text as Any)
         if let text = enterTextField.text {
-            storageManager.savePerson(name: text)
+//            storageManager.savePerson(name: text)
+            presenter.savePersonName(name: text)
             //            contacts.append(Contact(name: text))
-            contacts = storageManager.fetchAllPerson() ?? []
+            presenter.fetchAllPerson()
+//            contacts = storageManager.fetchAllPerson() ?? []
             //            tableView.reloadData()
 
-            tableView.insertRows(at: [IndexPath(row: contacts.count - 1, section: 0)], with: .automatic)
+            tableView.insertRows(at: [IndexPath(row: presenter.contacts.count - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
         }
     }
-
-
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
@@ -130,7 +127,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return contacts.count
+        return presenter.contacts.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -140,22 +137,23 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
         //        content.image = UIImage(systemName: "play")
-        content.text = contacts[indexPath.row].name
+        content.text = presenter.contacts[indexPath.row].name
         cell.contentConfiguration = content
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            storageManager.deletePerson(person: contacts[indexPath.row])
-            contacts.remove(at: indexPath.row)
+            presenter.deletePerson(indexPath: indexPath)
+//            storageManager.deletePerson(person: contacts[indexPath.row])
+            presenter.contacts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(DetailViewController(), animated: true)
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
