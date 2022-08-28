@@ -91,14 +91,14 @@
 			isa = PBXGroup;
 			children = (
 				8A225B6228AAAC8500FBE1E4 /* App */,
+				8AF1791528BBE9EF0046FBA7 /* Assembly */,
 				8A366F7628AE5091004457D1 /* Model */,
 				8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */,
 				8A366F9628BA3107004457D1 /* MainPresenter.swift */,
 				8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */,
-				8AE778C928BB987700414BD4 /* Assembly.swift */,
-				8AE778CD28BBB1AF00414BD4 /* Router.swift */,
 				8A366F9C28BABDC4004457D1 /* DetailPresenter.swift */,
 				8A366F9128B8A6A5004457D1 /* Services */,
+				8AF1791628BBEA050046FBA7 /* Router */,
 				8A366F7E28AE6048004457D1 /* Extentions */,
 				8A225B6328AAAD2200FBE1E4 /* Storyboards */,
 			);
@@ -156,6 +156,22 @@
 				8A366F9228B8A723004457D1 /* StorageManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		8AF1791528BBE9EF0046FBA7 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				8AE778C928BB987700414BD4 /* Assembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		8AF1791628BBEA050046FBA7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				8AE778CD28BBB1AF00414BD4 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -13,9 +13,6 @@ class DetailViewController: UIViewController {
     private let genders = ["male", "female", "not human"]
 
     var presenter: DetailPresenterType?
-    
-    var contacts = [Person]()
-    let storageManager = StorageManager()
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
@@ -52,8 +49,9 @@ class DetailViewController: UIViewController {
     private lazy var dateOfBirthTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Input your date of birdth"
-        let currentDate = Date()
-        textField.setting(systemImage: "calendar", text: "")
+        let date = presenter?.person?.dateOfBirth?.convertToString()
+            textField.setting(systemImage: "calendar", text: date ?? "")
+
         textField.datePicker(target: self,
                              doneAction: #selector(doneAction),
                              cancelAction: #selector(cancelAction))
@@ -62,9 +60,10 @@ class DetailViewController: UIViewController {
 
     private lazy var genderTextField: UITextField = {
         let textField = UITextField()
-
+        textField.placeholder = "Choose your gender"
+        let gender = presenter?.person?.gender ?? ""
         textField.setting(systemImage: "person.2.circle",
-                          text: genders[Int.random(in: 0...2)])
+                          text: gender)
         textField.inputView = genderPikerView
         return textField
     }()
@@ -117,7 +116,7 @@ class DetailViewController: UIViewController {
         setupHierarchy()
         setupLayout()
 
-        contacts = storageManager.fetchAllPerson() ?? []
+//        contacts = storageManager.fetchAllPerson() ?? []
     }
 
 // MARK: - Setup functions
@@ -170,6 +169,10 @@ class DetailViewController: UIViewController {
         editButton.layer.borderColor = borderColor.cgColor
     }
 
+    private func saveData() {
+        presenter?.updatePerson(name: nameTextField.text ?? "", dateOfBirth: dateOfBirthTextField.text ?? "", gender: genderTextField.text ?? "")
+    }
+
     // MARK: - OBJC Functions
 
     @objc
@@ -190,6 +193,7 @@ class DetailViewController: UIViewController {
             nameTextField.isUserInteractionEnabled = false
             dateOfBirthTextField.isUserInteractionEnabled = false
             doneAction()
+            saveData()
             genderTextField.isUserInteractionEnabled = false
         }
     }

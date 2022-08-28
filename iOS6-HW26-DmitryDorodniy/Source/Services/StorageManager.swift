@@ -51,15 +51,12 @@ class StorageManager: StorageManagerType {
         if let name = name {
         person.name = name
         }
-
         if let dateOfBirth = dateOfBirth {
             person.dateOfBirth = dateOfBirth.convertToDate()
         }
-
         if let gender = gender {
             person.gender = gender
         }
-
         saveContext()
     }
 
