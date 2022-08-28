@@ -20,34 +20,32 @@ class DetailViewController: UIViewController {
         button.layer.borderWidth = 1.5
 //        button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.masksToBounds = true
-//        button.setTitle("Edit", for: .normal)
         var config = UIButton.Configuration.borderedTinted()
         config.titleAlignment = .center
-//        config.title = "Edit"
-//        config.cornerStyle = .large
         button.configuration = config
         button.addTarget(self, action: #selector(editButtonPressed), for: .allEvents)
         return button
     }()
 
-    private lazy var avatarImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 100
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "face")
-        return imageView
+    private lazy var avatarImageButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "face"), for: .normal)
+//        button.imageView?.clipsToBounds = true
+        button.imageView?.layer.masksToBounds = true
+        button.imageView?.layer.cornerRadius = 100
+        button.imageView?.contentMode = .scaleAspectFill
+        button.isUserInteractionEnabled = false
+//        imageView.image = UIImage(named: "face")
+        return button
     }()
 
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-
         textField.setting(systemImage: "person", text: "Яна Брбсва")
         return textField
     }()
 
     private lazy var dateOfBirthTextField: UITextField = {
-
         let textField = UITextField()
         textField.placeholder = "Input your date of birdth"
         let currentDate = Date()
@@ -61,7 +59,8 @@ class DetailViewController: UIViewController {
     private lazy var genderTextField: UITextField = {
         let textField = UITextField()
 
-        textField.setting(systemImage: "person.2.circle", text: genders[Int.random(in: 0...2)])
+        textField.setting(systemImage: "person.2.circle",
+                          text: genders[Int.random(in: 0...2)])
         textField.inputView = genderPikerView
         return textField
     }()
@@ -117,25 +116,22 @@ class DetailViewController: UIViewController {
         contacts = storageManager.fetchAllPerson() ?? []
     }
 
+// MARK: - Setup functions
     private func setupView() {
         view.backgroundColor = .systemBackground
-
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
         setupEditButton(title: "Edit", borderColor: .lightGray)
     }
 
     private func setupHierarchy() {
-        view.addSubview(avatarImage)
+        view.addSubview(avatarImageButton)
         view.addSubview(dataStackView)
         view.addSubview(lineUnderNameTextField)
         view.addSubview(lineUnderDateOfBirthTextField)
         view.addSubview(lineUnderGenderTextField)
     }
 
-
     private func setupLayout() {
-
         func setUnderlineView(_ lineView: UIView, under: UIView) {
             lineView.snp.makeConstraints { make in
                 make.leading.trailing.equalTo(dataStackView)
@@ -148,14 +144,14 @@ class DetailViewController: UIViewController {
             make.width.equalTo(70)
         }
 
-        avatarImage.snp.makeConstraints { make in
+        avatarImageButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
            make.height.width.equalTo(200)
         }
 
         dataStackView.snp.makeConstraints { make in
-            make.top.equalTo(avatarImage.snp.bottom).offset(40)
+            make.top.equalTo(avatarImageButton.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(150)
         }
@@ -178,6 +174,7 @@ class DetailViewController: UIViewController {
         isEdit.toggle()
         if isEdit {
             setupEditButton(title: "Save", borderColor: .red)
+            avatarImageButton.isUserInteractionEnabled = true
             nameTextField.isUserInteractionEnabled = true
             dateOfBirthTextField.isUserInteractionEnabled = true
             genderTextField.isUserInteractionEnabled = true
@@ -185,6 +182,7 @@ class DetailViewController: UIViewController {
 //            editButton.layer.borderColor = UIColor.red.cgColor
         } else {
             setupEditButton(title: "Edit", borderColor: .lightGray)
+            avatarImageButton.isUserInteractionEnabled = false
             nameTextField.isUserInteractionEnabled = false
             dateOfBirthTextField.isUserInteractionEnabled = false
             doneAction()
