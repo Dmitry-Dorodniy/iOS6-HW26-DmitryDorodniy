@@ -7,9 +7,18 @@
 
 import CoreData
 
-class StorageManager {
+protocol StorageManagerType {
+    func savePersonName(_ name: String)
+    func deletePerson(person: Person)
+    func fetchAllPerson() -> [Person]?
+    func updatePerson(_ person: Person, _ name: String?, _ dateOfBirth: String?, _ gender: String?)
+
+
+}
+class StorageManager: StorageManagerType {
 
     // MARK: - Properties
+//    static var shared = StorageManager()
 
    private let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
 

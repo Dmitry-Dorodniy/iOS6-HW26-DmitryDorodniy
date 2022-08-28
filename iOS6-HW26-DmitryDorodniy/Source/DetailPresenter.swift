@@ -7,10 +7,21 @@
 
 import Foundation
 
-class DetailPresenter {
+protocol DetailPresenterType {
+    var person: Person? { get set }
+    init (person: Person, storage: StorageManagerType)
+    func updatePerson(person: Person, name: String, dateOfBirth: String, gender: String)
+}
 
-var contact = Person()
-    let storageManager = StorageManager()
+class DetailPresenter: DetailPresenterType {
+    var person: Person?
+
+    required init(person: Person, storage: StorageManagerType) {
+        self.person = person
+        storageManager = storage
+    }
+
+    let storageManager: StorageManagerType
 
     func updatePerson(person: Person, name: String, dateOfBirth: String, gender: String) {
     storageManager.updatePerson(person, name, dateOfBirth, gender)

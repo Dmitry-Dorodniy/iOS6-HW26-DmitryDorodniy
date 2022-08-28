@@ -8,16 +8,29 @@
 import Foundation
 
 protocol MainPresenterType {
-    func updatePerson(person: Person, name: String, dateOfBirth: String, gender: String)
-    func getPersonName() -> String
+    var persons: [Person] { get set }
+    var router: RouterType? { get }
+    func fetchAllPerson()
+    func savePersonName(name: String)
+    func deletePerson(indexPath: IndexPath)
+    func pushPerson(by indexPath: IndexPath) 
+    init(router: RouterType?, storage: StorageManagerType)
+
 }
 
 class MainPresenter: MainPresenterType {
 
-    var persons = [Person]()
-    var currentPerson = Person()
+    var router: RouterType?
 
-    let storageManager = StorageManager()
+    required init(router: RouterType?, storage: StorageManagerType) {
+        self.router = router
+        self.storageManager = storage
+    }
+
+
+    var persons = [Person]()
+
+    var storageManager: StorageManagerType
 
     func fetchAllPerson() {
         persons = storageManager.fetchAllPerson() ?? []
@@ -36,11 +49,9 @@ class MainPresenter: MainPresenterType {
     }
 
     func pushPerson(by indexPath: IndexPath) {
-        self.currentPerson = persons[indexPath.row]
+        router?.pushDetail(person: persons[indexPath.row])
     }
 
-    func getPersonName() -> String {
-        return currentPerson.name ?? ""
-    }
+
 }
 

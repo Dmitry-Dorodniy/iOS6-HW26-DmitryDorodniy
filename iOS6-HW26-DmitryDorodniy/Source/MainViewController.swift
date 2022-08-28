@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     //    var contacts = [Contact]()
 //    var contacts = [Person]()
     let storageManager = StorageManager()
-    var presenter = MainPresenter()
+    var presenter: MainPresenterType?
 
     // MARK: - Private Properties
 
@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
         setupHierarchy()
         setupLayout()
         //        storageManager.deleteAllData()
-        presenter.fetchAllPerson()
+        presenter?.fetchAllPerson()
 //        contacts = storageManager.fetchAllPerson() ?? []
         //        createContextManager()
     }
@@ -110,13 +110,13 @@ class MainViewController: UIViewController {
         print(enterTextField.text as Any)
         if let text = enterTextField.text {
 //            storageManager.savePerson(name: text)
-            presenter.savePersonName(name: text)
+            presenter?.savePersonName(name: text)
             //            contacts.append(Contact(name: text))
-            presenter.fetchAllPerson()
+            presenter?.fetchAllPerson()
 //            contacts = storageManager.fetchAllPerson() ?? []
             //            tableView.reloadData()
 
-            tableView.insertRows(at: [IndexPath(row: presenter.persons.count - 1, section: 0)], with: .automatic)
+            tableView.insertRows(at: [IndexPath(row: ((presenter?.persons.count)!) - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
         }
     }
@@ -127,7 +127,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return presenter.persons.count
+        return presenter?.persons.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,25 +137,23 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
         //        content.image = UIImage(systemName: "play")
-        content.text = presenter.persons[indexPath.row].name
+        content.text = presenter?.persons[indexPath.row].name
         cell.contentConfiguration = content
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            presenter.deletePerson(indexPath: indexPath)
+            presenter?.deletePerson(indexPath: indexPath)
 //            storageManager.deletePerson(person: contacts[indexPath.row])
-            presenter.persons.remove(at: indexPath.row)
+            presenter?.persons.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.pushPerson(by: indexPath)
-        let detailVC = DetailViewController()
-
-        navigationController?.pushViewController(detailVC, animated: true)
+        presenter?.pushPerson(by: indexPath)
+//        navigationController?.pushViewController(Assembly.createDetailViewController(person: presenter?.persons[indexPath.row] ?? Person()), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

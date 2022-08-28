@@ -23,7 +23,8 @@
 		8A366F9728BA3107004457D1 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9628BA3107004457D1 /* MainPresenter.swift */; };
 		8A366F9B28BAAEC9004457D1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9928BAAEC9004457D1 /* Person+CoreDataProperties.swift */; };
 		8A366F9D28BABDC4004457D1 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9C28BABDC4004457D1 /* DetailPresenter.swift */; };
-		8AE778CA28BB987700414BD4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE778C928BB987700414BD4 /* Router.swift */; };
+		8AE778CA28BB987700414BD4 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE778C928BB987700414BD4 /* Assembly.swift */; };
+		8AE778CE28BBB1AF00414BD4 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE778CD28BBB1AF00414BD4 /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +45,8 @@
 		8A366F9628BA3107004457D1 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		8A366F9928BAAEC9004457D1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../../../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A366F9C28BABDC4004457D1 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
-		8AE778C928BB987700414BD4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		8AE778C928BB987700414BD4 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		8AE778CD28BBB1AF00414BD4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,8 @@
 				8A225B4D28AA66ED00FBE1E4 /* MainViewController.swift */,
 				8A366F9628BA3107004457D1 /* MainPresenter.swift */,
 				8A225B6428AAB0CB00FBE1E4 /* DetailViewController.swift */,
-				8AE778C928BB987700414BD4 /* Router.swift */,
+				8AE778C928BB987700414BD4 /* Assembly.swift */,
+				8AE778CD28BBB1AF00414BD4 /* Router.swift */,
 				8A366F9C28BABDC4004457D1 /* DetailPresenter.swift */,
 				8A366F9128B8A6A5004457D1 /* Services */,
 				8A366F7E28AE6048004457D1 /* Extentions */,
@@ -242,9 +245,10 @@
 				8A366F9728BA3107004457D1 /* MainPresenter.swift in Sources */,
 				8A366F9328B8A723004457D1 /* StorageManager.swift in Sources */,
 				8A366F9D28BABDC4004457D1 /* DetailPresenter.swift in Sources */,
+				8AE778CE28BBB1AF00414BD4 /* Router.swift in Sources */,
 				8A225B6528AAB0CB00FBE1E4 /* DetailViewController.swift in Sources */,
 				8A366F7828AE50AC004457D1 /* Contact.swift in Sources */,
-				8AE778CA28BB987700414BD4 /* Router.swift in Sources */,
+				8AE778CA28BB987700414BD4 /* Assembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

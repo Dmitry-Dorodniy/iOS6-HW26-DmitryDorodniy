@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
     private var isEdit = Bool()
     private let genders = ["male", "female", "not human"]
 
-    var presenter: MainPresenter?
+    var presenter: DetailPresenterType?
     
     var contacts = [Person]()
     let storageManager = StorageManager()
@@ -21,7 +21,6 @@ class DetailViewController: UIViewController {
         let button = UIButton()
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 1.5
-//        button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.masksToBounds = true
         var config = UIButton.Configuration.borderedTinted()
         config.titleAlignment = .center
@@ -44,8 +43,8 @@ class DetailViewController: UIViewController {
 
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-        let name = presenter?.getPersonName()
-        textField.setting(systemImage: "person", text: name ?? "" )
+        let name = presenter?.person?.name
+        textField.setting(systemImage: "person", text: name ?? "")
 
         return textField
     }()
