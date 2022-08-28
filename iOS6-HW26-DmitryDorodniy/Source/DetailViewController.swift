@@ -9,7 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var isEdit = Bool()
+    private var isEdit = Bool()
+    private let genders = ["male", "female", "not human"]
     var contacts = [Person]()
     let storageManager = StorageManager()
 
@@ -48,8 +49,9 @@ class DetailViewController: UIViewController {
     private lazy var dateOfBirthTextField: UITextField = {
 
         let textField = UITextField()
+        textField.placeholder = "Input your date of birdth"
         let currentDate = Date()
-        textField.setting(systemImage: "calendar", text: currentDate.convertToString())
+        textField.setting(systemImage: "calendar", text: "")
         textField.datePicker(target: self,
                              doneAction: #selector(doneAction),
                              cancelAction: #selector(cancelAction))
@@ -58,8 +60,19 @@ class DetailViewController: UIViewController {
 
     private lazy var genderTextField: UITextField = {
         let textField = UITextField()
-        textField.setting(systemImage: "person.2.circle", text: "female")
+
+        textField.setting(systemImage: "person.2.circle", text: genders[Int.random(in: 0...2)])
+        textField.inputView = genderPikerView
         return textField
+    }()
+
+    private lazy var genderPikerView: UIPickerView = {
+        let picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 130))
+//        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+
+        return picker
     }()
 
     private lazy var lineUnderNameTextField: UIView = {
@@ -176,14 +189,11 @@ class DetailViewController: UIViewController {
             dateOfBirthTextField.isUserInteractionEnabled = false
             doneAction()
             genderTextField.isUserInteractionEnabled = false
-//            editButton.setTitle("Edit", for: .normal)
-//            editButton.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
 
     @objc
     func cancelAction() {
-
         self.dateOfBirthTextField.resignFirstResponder()
     }
 
@@ -191,14 +201,37 @@ class DetailViewController: UIViewController {
     func doneAction() {
 
         if let datePickerView = self.dateOfBirthTextField.inputView as? UIDatePicker {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            let dateString = dateFormatter.string(from: datePickerView.date)
-            self.dateOfBirthTextField.text = dateString
-
+            self.dateOfBirthTextField.text = datePickerView.date.convertToString()
             self.dateOfBirthTextField.resignFirstResponder()
         }
     }
+}
+
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
+
+extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genders.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genders[row]
+    }
+
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 35
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        genderTextField.text = genders[row]
+    }
+
+
 }
 
 //extension DetailViewController: UITextFieldDelegate {

@@ -63,7 +63,6 @@ extension UITextField {
             let barButtonItem = UIBarButtonItem(barButtonSystemItem: style,
                                                 target: buttonTarget,
                                                 action: action)
-
             return barButtonItem
         }
 
