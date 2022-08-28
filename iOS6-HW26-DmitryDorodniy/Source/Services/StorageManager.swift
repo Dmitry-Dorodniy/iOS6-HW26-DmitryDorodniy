@@ -37,18 +37,20 @@ class StorageManager {
         saveContext()
     }
 
-    func savePerson(_ name: String, _ dateOfBirth: Date?, _ gender: String?) {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
-                                                                 in: context) else {return}
-        let newPerson = Person(entity: entityDescription,
-                               insertInto: context)
-        newPerson.name = name
+    func updatePerson(_ person: Person, _ name: String?, _ dateOfBirth: String?, _ gender: String?) {
+
+        if let name = name {
+        person.name = name
+        }
+
         if let dateOfBirth = dateOfBirth {
-            newPerson.dateOfBirth = dateOfBirth
+            person.dateOfBirth = dateOfBirth.convertToDate()
         }
+
         if let gender = gender {
-            newPerson.gender = gender
+            person.gender = gender
         }
+
         saveContext()
     }
 

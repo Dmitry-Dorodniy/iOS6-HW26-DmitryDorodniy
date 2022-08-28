@@ -7,31 +7,40 @@
 
 import Foundation
 
+protocol MainPresenterType {
+    func updatePerson(person: Person, name: String, dateOfBirth: String, gender: String)
+    func getPersonName() -> String
+}
 
+class MainPresenter: MainPresenterType {
 
-class MainPresenter {
+    var persons = [Person]()
+    var currentPerson = Person()
 
-    
-    var contacts = [Person]()
     let storageManager = StorageManager()
 
     func fetchAllPerson() {
-        contacts = storageManager.fetchAllPerson() ?? []
+        persons = storageManager.fetchAllPerson() ?? []
     }
 
     func savePersonName(name: String) {
         storageManager.savePersonName(name)
     }
 
-    func updatePerson(name: String, dateOfBirth: Date, gender: String) {
-        storageManager.savePerson(name, dateOfBirth, gender)
+    func updatePerson(person: Person, name: String, dateOfBirth: String, gender: String) {
+        storageManager.updatePerson(person, name, dateOfBirth, gender)
     }
 
     func deletePerson(indexPath: IndexPath) {
-        storageManager.deletePerson(person: contacts[indexPath.row])
+        storageManager.deletePerson(person: persons[indexPath.row])
     }
 
-    func pushPerson(indexPath: IndexPath) {
-      
+    func pushPerson(by indexPath: IndexPath) {
+        self.currentPerson = persons[indexPath.row]
+    }
+
+    func getPersonName() -> String {
+        return currentPerson.name ?? ""
     }
 }
+

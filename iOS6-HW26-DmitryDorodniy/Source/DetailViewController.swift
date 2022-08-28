@@ -11,6 +11,9 @@ class DetailViewController: UIViewController {
 
     private var isEdit = Bool()
     private let genders = ["male", "female", "not human"]
+
+    var presenter: MainPresenter?
+    
     var contacts = [Person]()
     let storageManager = StorageManager()
 
@@ -41,7 +44,9 @@ class DetailViewController: UIViewController {
 
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-        textField.setting(systemImage: "person", text: "Яна Брбсва")
+        let name = presenter?.getPersonName()
+        textField.setting(systemImage: "person", text: name ?? "" )
+
         return textField
     }()
 

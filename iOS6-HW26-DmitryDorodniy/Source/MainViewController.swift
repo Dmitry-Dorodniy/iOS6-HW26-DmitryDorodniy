@@ -116,7 +116,7 @@ class MainViewController: UIViewController {
 //            contacts = storageManager.fetchAllPerson() ?? []
             //            tableView.reloadData()
 
-            tableView.insertRows(at: [IndexPath(row: presenter.contacts.count - 1, section: 0)], with: .automatic)
+            tableView.insertRows(at: [IndexPath(row: presenter.persons.count - 1, section: 0)], with: .automatic)
             enterTextField.text = nil
         }
     }
@@ -127,7 +127,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return presenter.contacts.count
+        return presenter.persons.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,7 +137,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
         //        content.image = UIImage(systemName: "play")
-        content.text = presenter.contacts[indexPath.row].name
+        content.text = presenter.persons[indexPath.row].name
         cell.contentConfiguration = content
         return cell
     }
@@ -146,14 +146,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             presenter.deletePerson(indexPath: indexPath)
 //            storageManager.deletePerson(person: contacts[indexPath.row])
-            presenter.contacts.remove(at: indexPath.row)
+            presenter.persons.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(DetailViewController(), animated: true)
+        presenter.pushPerson(by: indexPath)
+        let detailVC = DetailViewController()
 
+        navigationController?.pushViewController(detailVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
