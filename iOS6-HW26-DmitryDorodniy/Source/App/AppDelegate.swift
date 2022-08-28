@@ -20,10 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController()
         let router = Router(navigationController: navigationController, assembly: assembly)
         router.setRootVC()
-//        router.navigationController?.viewControllers = [router.assembly?.createMainViewController(router: router)]
-//        navigationController.navigationBar.tintColor = .black
-//        window?.overrideUserInterfaceStyle = .dark
-        
+
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 

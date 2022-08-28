@@ -7,10 +7,11 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UINavigationControllerDelegate {
 
     private var isEdit = Bool()
-    private let genders = ["male", "female", "not human"]
+    private var avatar: Data?
+    private let genders = ["Choose gender:", "Male", "Female", "Not human"]
 
     var presenter: DetailPresenterType?
 
@@ -34,8 +35,16 @@ class DetailViewController: UIViewController {
         button.imageView?.layer.cornerRadius = 100
         button.imageView?.contentMode = .scaleAspectFill
         button.isUserInteractionEnabled = false
-//        imageView.image = UIImage(named: "face")
+        button.addTarget(self, action: #selector(avatarButtonTapped), for: .touchUpInside)
         return button
+    }()
+
+    private lazy var imagePicker: UIImagePickerController = {
+        let picker = UIImagePickerController()
+        picker.sourceType = .savedPhotosAlbum
+        picker.allowsEditing = false
+        picker.delegate = self
+        return picker
     }()
 
     private lazy var nameTextField: UITextField = {
@@ -69,13 +78,15 @@ class DetailViewController: UIViewController {
     }()
 
     private lazy var genderPikerView: UIPickerView = {
-        let picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 130))
-//        let picker = UIPickerView()
+        let picker = UIPickerView(frame: CGRect(x: 0, y: 0,
+                                                width: view.bounds.width,
+                                                height: 130))
         picker.delegate = self
         picker.dataSource = self
-
         return picker
     }()
+
+
 
     private lazy var lineUnderNameTextField: UIView = {
         let view = UIView()
@@ -115,8 +126,6 @@ class DetailViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
-
-//        contacts = storageManager.fetchAllPerson() ?? []
     }
 
 // MARK: - Setup functions
@@ -170,7 +179,9 @@ class DetailViewController: UIViewController {
     }
 
     private func saveData() {
-        presenter?.updatePerson(name: nameTextField.text ?? "", dateOfBirth: dateOfBirthTextField.text ?? "", gender: genderTextField.text ?? "")
+        presenter?.updatePerson(name: nameTextField.text ?? "",
+                                dateOfBirth: dateOfBirthTextField.text ?? "",
+                                gender: genderTextField.text ?? "")
     }
 
     // MARK: - OBJC Functions
@@ -185,17 +196,20 @@ class DetailViewController: UIViewController {
             nameTextField.isUserInteractionEnabled = true
             dateOfBirthTextField.isUserInteractionEnabled = true
             genderTextField.isUserInteractionEnabled = true
-//            editButton.setTitle("Save", for: .normal)
-//            editButton.layer.borderColor = UIColor.red.cgColor
         } else {
             setupEditButton(title: "Edit", borderColor: .lightGray)
             avatarImageButton.isUserInteractionEnabled = false
             nameTextField.isUserInteractionEnabled = false
             dateOfBirthTextField.isUserInteractionEnabled = false
+            genderTextField.isUserInteractionEnabled = false
             doneAction()
             saveData()
-            genderTextField.isUserInteractionEnabled = false
         }
+    }
+
+    @objc
+    func avatarButtonTapped() {
+        present(imagePicker, animated: true, completion: nil)
     }
 
     @objc
@@ -234,19 +248,27 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        guard row != 0 else { return }
         genderTextField.text = genders[row]
     }
-
-
 }
 
-//extension DetailViewController: UITextFieldDelegate {
-//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-//        if !isEdit {
-//        if textField == nameTextField {
-//            return false; //do not show keyboard nor cursor
-//        }
-//        }
-//        return true
-//    }
-//}
+extension DetailViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage else {
+            showAlert(title: "Error", message: "\(info)")
+            return
+        }
+
+        DispatchQueue.main.async {
+            let scaledImage = image.scaleTo(targetSize: CGSize(width: 100, height: 100))
+            self.avatar = scaledImage.pngData()
+
+            if let avatar = self.avatar {
+                self.avatarImageButton.setImage(UIImage(data: avatar), for: .normal)
+            }
+        }
+    }
+}
