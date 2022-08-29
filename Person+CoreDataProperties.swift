@@ -20,7 +20,6 @@ extension Person {
     @NSManaged public var dateOfBirth: Date?
     @NSManaged public var gender: String?
     @NSManaged public var avatar: Data?
-
 }
 
 extension Person : Identifiable {

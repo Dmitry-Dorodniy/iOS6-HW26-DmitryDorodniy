@@ -40,8 +40,8 @@ class MainPresenter: MainPresenterType {
         storageManager.savePersonName(name)
     }
 
-    func updatePerson(person: Person, name: String, dateOfBirth: String, gender: String) {
-        storageManager.updatePerson(person, name, dateOfBirth, gender)
+    func updatePerson(person: Person, avatar: Data, name: String, dateOfBirth: String, gender: String) {
+        storageManager.updatePerson(person, avatar, name, dateOfBirth, gender)
     }
 
     func deletePerson(indexPath: IndexPath) {

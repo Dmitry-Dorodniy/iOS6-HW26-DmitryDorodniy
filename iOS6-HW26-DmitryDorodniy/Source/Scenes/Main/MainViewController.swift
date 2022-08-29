@@ -10,8 +10,6 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
-    //    var contacts = [Contact]()
-//    var contacts = [Person]()
     let storageManager = StorageManager()
     var presenter: MainPresenterType?
 
@@ -60,10 +58,12 @@ class MainViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
-        //        storageManager.deleteAllData()
         presenter?.fetchAllPerson()
-//        contacts = storageManager.fetchAllPerson() ?? []
-        //        createContextManager()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.fetchAllPerson()
+        tableView.reloadData()
     }
 
     // MARK: - Private functions

@@ -35,8 +35,8 @@ extension UITextField {
     /// DatePicker Wheel Extention for UITextField
     /// - Parameters:
     ///   - target: self
-    ///   - doneAction: done button @objc action
-    ///   - cancelAction: cancel button @objc action
+    ///   - dataPickerDoneAction: done button @objc action
+    ///   - dataPickerCancelAction: cancel button @objc action
     ///   - datePickerMode: default is .date
     ///   - datePickerStyle: default is .wheels
     func datePicker<T>(target: T,
@@ -86,4 +86,5 @@ extension UITextField {
                          animated: true)
         self.inputAccessoryView = toolBar
     }
+
 }
