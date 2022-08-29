@@ -26,6 +26,5 @@ class DetailPresenter: DetailPresenterType {
     func updatePerson(avatar: Data?, name: String?, dateOfBirth: String?, gender: String?) {
         guard let person = person else { return }
         storageManager.updatePerson(person, avatar, name, dateOfBirth, gender)
-}
-
+    }
 }

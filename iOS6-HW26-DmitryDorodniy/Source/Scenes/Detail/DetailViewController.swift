@@ -220,7 +220,6 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
                 showAlert(title: "Sorry", message: "Enter name")
                 return
             }
-
             saveData()
         }
     }
