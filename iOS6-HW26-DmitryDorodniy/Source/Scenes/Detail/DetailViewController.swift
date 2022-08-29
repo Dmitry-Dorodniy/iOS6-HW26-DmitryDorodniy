@@ -9,11 +9,14 @@ import UIKit
 
 class DetailViewController: UIViewController, UINavigationControllerDelegate {
 
-    // MARK: - Private properties
+    // MARK: - Properties
 
     private var isEdit = Bool()
     private var avatar: Data? = nil
-    private let genders = ["Choose gender:", "Male", "Female", "Not human"]
+    private let genders = ["Choose gender:",
+                           "Male",
+                           "Female",
+                           "Not human"]
 
     var presenter: DetailPresenterType?
 
@@ -25,7 +28,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
         var config = UIButton.Configuration.borderedTinted()
         config.titleAlignment = .center
         button.configuration = config
-        button.addTarget(self, action: #selector(editButtonPressed), for: .allEvents)
+        button.addTarget(self, action: #selector(editButtonPressed),
+                         for: .allEvents)
         return button
     }()
 
@@ -40,7 +44,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
         button.imageView?.layer.cornerRadius = 100
         button.imageView?.contentMode = .scaleAspectFill
         button.isUserInteractionEnabled = false
-        button.addTarget(self, action: #selector(avatarButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(avatarButtonTapped),
+                         for: .touchUpInside)
         return button
     }()
 
@@ -55,7 +60,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         let name = presenter?.person?.name
-        textField.setting(systemImage: "person", text: name ?? "")
+        textField.setting(systemImage: "person",
+                          text: name ?? "")
         textField.delegate = self
         return textField
     }()
@@ -64,8 +70,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
         let textField = UITextField()
         textField.placeholder = "Input your date of birdth"
         let date = presenter?.person?.dateOfBirth?.convertToString()
-        textField.setting(systemImage: "calendar", text: date ?? "")
-
+        textField.setting(systemImage: "calendar",
+                          text: date ?? "")
         textField.datePicker(target: self,
                              doneAction: #selector(dataPickerDoneAction),
                              cancelAction: #selector(dataPickerCancelAction))
@@ -75,7 +81,9 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
     private lazy var genderPickerToolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(genderDoneButtonPressed))
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: nil,
+                                         action: #selector(genderDoneButtonPressed))
         toolbar.setItems([doneButton], animated: true)
         return toolbar
     }()
@@ -131,6 +139,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
     }()
 
     // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -140,10 +149,12 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     // MARK: - Setup functions
+
     private func setupView() {
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton)
-        setupEditButton(title: "Edit", borderColor: .lightGray)
+        setupEditButton(title: "Edit",
+                        borderColor: .lightGray)
     }
 
     private func setupHierarchy() {
@@ -179,9 +190,12 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
             make.height.equalTo(150)
         }
 
-        setUnderlineView(lineUnderNameTextField, under: nameTextField)
-        setUnderlineView(lineUnderDateOfBirthTextField, under: dateOfBirthTextField)
-        setUnderlineView(lineUnderGenderTextField, under: genderTextField)
+        setUnderlineView(lineUnderNameTextField,
+                         under: nameTextField)
+        setUnderlineView(lineUnderDateOfBirthTextField,
+                         under: dateOfBirthTextField)
+        setUnderlineView(lineUnderGenderTextField,
+                         under: genderTextField)
     }
 
     private func setupEditButton(title: String, borderColor: UIColor) {
@@ -189,6 +203,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
         editButton.layer.borderColor = borderColor.cgColor
     }
 
+    // MARK: - Action Functions
+    
     private func saveData() {
         presenter?.updatePerson(avatar: avatar,
                                 name: nameTextField.text,
@@ -215,8 +231,8 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
             dateOfBirthTextField.isUserInteractionEnabled = false
             genderTextField.isUserInteractionEnabled = false
             dataPickerDoneAction()
-           guard let personName = nameTextField.text,
-                 !personName.trimmingCharacters(in: .whitespaces).isEmpty else {
+            guard let personName = nameTextField.text,
+                  !personName.trimmingCharacters(in: .whitespaces).isEmpty else {
                 showAlert(title: "Sorry", message: "Enter name")
                 return
             }
@@ -266,19 +282,26 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         return 1
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
         return genders.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
         return genders[row]
     }
 
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView,
+                    rowHeightForComponent component: Int) -> CGFloat {
         return 35
     }
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
+        
         guard row != 0 else { return }
         genderTextField.text = genders[row]
     }
@@ -287,8 +310,10 @@ extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 // MARK: - UIImagePickerControllerDelegate
 
 extension DetailViewController: UIImagePickerControllerDelegate {
+
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
         imagePicker.dismiss(animated: true, completion: nil)
         guard let image = info[.originalImage] as? UIImage else {
             showAlert(title: "Error", message: "\(info)")
