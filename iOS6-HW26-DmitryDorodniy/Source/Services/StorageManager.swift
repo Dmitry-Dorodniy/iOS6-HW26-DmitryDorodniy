@@ -11,7 +11,11 @@ protocol StorageManagerType {
     func savePersonName(_ name: String)
     func deletePerson(person: Person)
     func fetchAllPerson() -> [Person]?
-    func updatePerson(_ person: Person, _ avatar: Data?, _ name: String?, _ dateOfBirth: String?, _ gender: String?)
+    func updatePerson(_ person: Person,
+                      _ avatar: Data?,
+                      _ name: String?,
+                      _ dateOfBirth: String?,
+                      _ gender: String?)
 }
 
 class StorageManager: StorageManagerType {
@@ -19,6 +23,7 @@ class StorageManager: StorageManagerType {
     // MARK: - Properties
 
     private let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "PersonModel")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -36,12 +41,18 @@ class StorageManager: StorageManagerType {
     func savePersonName(_ name: String) {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person",
                                                                  in: context) else {return}
-        let newPerson = Person(entity: entityDescription, insertInto: context)
+        let newPerson = Person(entity: entityDescription,
+                               insertInto: context)
         newPerson.name = name
         saveContext()
     }
 
-    func updatePerson(_ person: Person, _ avatar: Data?, _ name: String?, _ dateOfBirth: String?, _ gender: String?) {
+    func updatePerson(_ person: Person,
+                      _ avatar: Data?,
+                      _ name: String?,
+                      _ dateOfBirth: String?,
+                      _ gender: String?) {
+
         if let avatar = avatar {
             person.avatar = avatar
         }
@@ -58,6 +69,7 @@ class StorageManager: StorageManagerType {
     }
 
     func fetchAllPerson() -> [Person]? {
+        
         do {
             let persons = try context.fetch(fetchRequest) as? [Person]
             return persons

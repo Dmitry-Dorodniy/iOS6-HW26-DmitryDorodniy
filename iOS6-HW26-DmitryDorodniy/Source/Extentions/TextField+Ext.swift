@@ -80,9 +80,9 @@ extension UITextField {
                                               y: 0,
                                               width: screenWidth,
                                               height: 30))
-        toolBar.setItems([buttonItem(withSystemItemStyle: .cancel),
+        toolBar.setItems([buttonItem(withSystemItemStyle: .done),
                           buttonItem(withSystemItemStyle: .flexibleSpace),
-                          buttonItem(withSystemItemStyle: .done)],
+                          buttonItem(withSystemItemStyle: .cancel)],
                          animated: true)
         self.inputAccessoryView = toolBar
     }

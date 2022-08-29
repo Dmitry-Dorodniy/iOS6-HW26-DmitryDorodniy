@@ -10,13 +10,14 @@ import SnapKit
 
 class MainViewController: UIViewController {
 
+    // MARK: - Properties
+    
     let storageManager = StorageManager()
     var presenter: MainPresenterType?
 
-    // MARK: - Private Properties
-
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        let tableView = UITableView(frame: .zero,
+                                    style: .insetGrouped)
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
@@ -52,6 +53,7 @@ class MainViewController: UIViewController {
     }()
 
     // MARK: - Lyfecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -69,14 +71,15 @@ class MainViewController: UIViewController {
     // MARK: - Private functions
 
     private func setupView() {
+
         navigationItem.title = "Users"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-
         view.backgroundColor = .systemBackground
     }
 
     private func setupHierarchy() {
+
         view.addSubview(enterTextField)
         view.addSubview(button)
         view.addSubview(tableView)
@@ -105,58 +108,63 @@ class MainViewController: UIViewController {
         }
     }
 
+    // MARK: - OBJC Functions
+
     @objc func buttonAction() {
+
         guard enterTextField.text != "" else {return}
         print(enterTextField.text as Any)
         if let text = enterTextField.text {
-//            storageManager.savePerson(name: text)
             presenter?.savePersonName(name: text)
-            //            contacts.append(Contact(name: text))
             presenter?.fetchAllPerson()
-//            contacts = storageManager.fetchAllPerson() ?? []
-            //            tableView.reloadData()
-
-            tableView.insertRows(at: [IndexPath(row: ((presenter?.persons.count)!) - 1, section: 0)], with: .automatic)
+            tableView.insertRows(at: [IndexPath(row: ((presenter?.persons.count)!) - 1, section: 0)],
+                                 with: .automatic)
             enterTextField.text = nil
         }
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
+
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
 
         return presenter?.persons.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        //        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for:indexPath) as? TableViewCell else { return UITableViewCell() }
         cell.accessoryType = .disclosureIndicator
         var content = cell.defaultContentConfiguration()
-        //        content.image = UIImage(systemName: "play")
         content.text = presenter?.persons[indexPath.row].name
         cell.contentConfiguration = content
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+
         if editingStyle == .delete {
             presenter?.deletePerson(indexPath: indexPath)
-//            storageManager.deletePerson(person: contacts[indexPath.row])
             presenter?.persons.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+
         presenter?.pushPerson(by: indexPath)
-//        navigationController?.pushViewController(Assembly.createDetailViewController(person: presenter?.persons[indexPath.row] ?? Person()), animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension MainViewController: UITextFieldDelegate {
 
