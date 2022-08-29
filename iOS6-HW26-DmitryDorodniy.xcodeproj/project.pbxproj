@@ -96,7 +96,6 @@
 				8AF1791728BBED4E0046FBA7 /* Scenes */,
 				8A366F9128B8A6A5004457D1 /* Services */,
 				8A366F7E28AE6048004457D1 /* Extentions */,
-				8A225B6328AAAD2200FBE1E4 /* Storyboards */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -104,6 +103,7 @@
 		8A225B6128AAABE200FBE1E4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8A225B6328AAAD2200FBE1E4 /* Storyboards */,
 				8A225B5228AA66ED00FBE1E4 /* PersonModel.xcdatamodeld */,
 				8A225B5A28AA66EE00FBE1E4 /* Info.plist */,
 				8A225B5528AA66EE00FBE1E4 /* Assets.xcassets */,
