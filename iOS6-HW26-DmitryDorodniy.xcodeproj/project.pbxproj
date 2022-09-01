@@ -17,7 +17,7 @@
 		8A366F7528AE402F004457D1 /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F7428AE402F004457D1 /* TextField+Ext.swift */; };
 		8A366F8328B3DD72004457D1 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */; };
 		8A366F9328B8A723004457D1 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9228B8A723004457D1 /* StorageManager.swift */; };
-		8A366F9528B9660E004457D1 /* Date,String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9428B9660E004457D1 /* Date,String+Ext.swift */; };
+		8A366F9528B9660E004457D1 /* Date+String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9428B9660E004457D1 /* Date+String+Ext.swift */; };
 		8A366F9728BA3107004457D1 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9628BA3107004457D1 /* MainPresenter.swift */; };
 		8A366F9B28BAAEC9004457D1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9928BAAEC9004457D1 /* Person+CoreDataProperties.swift */; };
 		8A366F9D28BABDC4004457D1 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A366F9C28BABDC4004457D1 /* DetailPresenter.swift */; };
@@ -39,7 +39,7 @@
 		8A366F7428AE402F004457D1 /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Ext.swift"; sourceTree = "<group>"; };
 		8A366F8128B3DD72004457D1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A366F9228B8A723004457D1 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		8A366F9428B9660E004457D1 /* Date,String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date,String+Ext.swift"; sourceTree = "<group>"; };
+		8A366F9428B9660E004457D1 /* Date+String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String+Ext.swift"; sourceTree = "<group>"; };
 		8A366F9628BA3107004457D1 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		8A366F9928BAAEC9004457D1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "../../../Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A366F9C28BABDC4004457D1 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				8A366F7428AE402F004457D1 /* TextField+Ext.swift */,
-				8A366F9428B9660E004457D1 /* Date,String+Ext.swift */,
+				8A366F9428B9660E004457D1 /* Date+String+Ext.swift */,
 				8AF1791A28BBF59F0046FBA7 /* UIViewConroller+Ext.swift */,
 				8AF1791C28BBF5E50046FBA7 /* UIImage+Ext.swift */,
 			);
@@ -281,7 +281,7 @@
 				8A225B4E28AA66ED00FBE1E4 /* MainViewController.swift in Sources */,
 				8A225B4A28AA66ED00FBE1E4 /* AppDelegate.swift in Sources */,
 				8A366F8328B3DD72004457D1 /* Person+CoreDataClass.swift in Sources */,
-				8A366F9528B9660E004457D1 /* Date,String+Ext.swift in Sources */,
+				8A366F9528B9660E004457D1 /* Date+String+Ext.swift in Sources */,
 				8A366F9728BA3107004457D1 /* MainPresenter.swift in Sources */,
 				8A366F9328B8A723004457D1 /* StorageManager.swift in Sources */,
 				8A366F9D28BABDC4004457D1 /* DetailPresenter.swift in Sources */,
