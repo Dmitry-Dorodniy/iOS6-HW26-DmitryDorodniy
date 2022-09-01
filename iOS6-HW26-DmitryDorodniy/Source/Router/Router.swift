@@ -35,6 +35,7 @@ class Router: RouterType {
 
         guard let navigationConroller = navigationController, let person = person else { return }
         guard let detailVC = assembly?.createDetailViewController(person: person) else { return }
+
         navigationConroller.pushViewController(detailVC, animated: true)
     }
 

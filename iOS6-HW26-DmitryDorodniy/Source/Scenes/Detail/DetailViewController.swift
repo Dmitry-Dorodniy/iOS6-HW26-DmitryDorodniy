@@ -69,22 +69,27 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
     private lazy var dateOfBirthTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Input your date of birdth"
-        let date = presenter?.person?.dateOfBirth?.convertToString()
+        let date = presenter?.person?.dateOfBirth
         textField.setting(systemImage: "calendar",
-                          text: date ?? "")
+                          text: date?.convertToString() ?? "")
         textField.datePicker(target: self,
+                             currentDate: date ?? Date(),
                              doneAction: #selector(dataPickerDoneAction),
                              cancelAction: #selector(dataPickerCancelAction))
         return textField
     }()
 
     private lazy var genderPickerToolbar: UIToolbar = {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
+        let toolbar = UIToolbar(frame: CGRect(x: 0,
+                                              y: 0,
+                                              width: view.frame.width,
+                                              height: 30))
+//        toolbar.sizeToFit()
+        let space = UIBarButtonItem.flexibleSpace()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
                                          target: nil,
                                          action: #selector(genderDoneButtonPressed))
-        toolbar.setItems([doneButton], animated: true)
+        toolbar.setItems([space, doneButton], animated: true)
         return toolbar
     }()
 
@@ -146,6 +151,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate {
         setupView()
         setupHierarchy()
         setupLayout()
+        self.dismissKeyboard()
     }
 
     // MARK: - Setup functions
